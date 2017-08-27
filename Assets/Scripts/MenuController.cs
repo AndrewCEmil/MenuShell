@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
 	public Slider musicSlider;
-	public Toggle particleToggle;
+	private SoundController soundController;
 	// Use this for initialization
 	void Start () {
-		MaybeInitializePlayerPrefs ();
+		soundController = GameObject.Find ("MusicPlayer").GetComponent<SoundController> ();
+		MaybeInitializeSettings ();
 	}
 
 	// Update is called once per frame
@@ -17,23 +19,23 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void LoadGame() {
-		Application.LoadLevel("DemoScene");
+		SceneManager.LoadScene ("DemoScene");
 	}
 
 	public void LoadAnteChamber() {
-		Application.LoadLevel("AntechamberScene");
+		SceneManager.LoadScene ("AntechamberScene");
 	}
 
 	public void LoadSettings() {
-		Application.LoadLevel ("SettingsScene");
+		SceneManager.LoadScene ("SettingsScene");
 	}
 
 	public void LoadStart() {
-		Application.LoadLevel ("StartScene");
+		SceneManager.LoadScene ("StartScene");
 	}
 
 	public void LoadAboutScene() {
-		Application.LoadLevel ("AboutScene");
+		SceneManager.LoadScene ("AboutScene");
 	}
 
 	public void Quit() {
@@ -42,23 +44,17 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void SetMusicVolume() {
-		SoundController soundController = GameObject.Find ("MusicPlayer").GetComponent<SoundController> ();
 		soundController.SetMusicVolume (musicSlider.value);
 	}
 
-	//Reversed so we default to particles on
-	public void SetParticleToggle() {
-		if (particleToggle.isOn) {
-			PlayerPrefs.SetInt ("ParticlesOff", 0);
-		} else {
-			PlayerPrefs.SetInt ("ParticlesOff", 1);
-		}
-		PlayerPrefs.Save ();
-	}
-
-	private void MaybeInitializePlayerPrefs() {
-		//Other settings
-	}
-
 	//TODO initialize settings menu
+	private void MaybeInitializeSettings() {
+		if (SceneManager.GetActiveScene ().name == "SettingsScene") {
+			InitializeSettings ();
+		}
+	}
+
+	private void InitializeSettings() {
+		musicSlider.value = soundController.GetMusicVolume ();
+	}
 }

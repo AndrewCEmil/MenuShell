@@ -26,7 +26,7 @@ public class SoundController : MonoBehaviour {
 	}
 
 	private void InitializeSound() {
-		audioSource.volume = getSavedMusicVolume ();
+		audioSource.volume = GetSavedMusicVolume ();
 	}
 
 	// Update is called once per frame
@@ -36,20 +36,24 @@ public class SoundController : MonoBehaviour {
 
 	public void SetMusicVolume(float volume) {
 		audioSource.volume = volume;
-		saveMusicVolume(volume);
+		SaveMusicVolume(volume);
 	}
 
-	private void saveMusicVolume(float volume) {
+	private void SaveMusicVolume(float volume) {
 		PlayerPrefs.SetFloat ("musicvolume", volume);
 		PlayerPrefs.Save ();
 	}
 
-	private float getSavedMusicVolume() {
+	private float GetSavedMusicVolume() {
 		float volume = PlayerPrefs.GetFloat ("musicvolume", -1);
 		if (volume < 0) {
 			volume = defaultMusicVolume;
-			saveMusicVolume (volume);
+			SaveMusicVolume (volume);
 		}
 		return volume;
+	}
+
+	public float GetMusicVolume() {
+		return audioSource.volume;
 	}
 }
