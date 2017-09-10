@@ -17,4 +17,12 @@ public class SoundEffectController : MonoBehaviour {
 	public void PlayButtonClicked() {
 		SoundEffectManager.SFXInstance.PlayButtonClicked ();
 	}
+
+	public void SetVolume(float volume) {
+		SoundEffectManager.SFXInstance.SetVolume (volume);
+	}
+
+	public float GetVolume() {
+		return SoundEffectManager.SFXInstance.GetVolume ();
+	}
 }

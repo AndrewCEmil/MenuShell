@@ -22,11 +22,34 @@ public class SoundEffectManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 		audioSource = GetComponent<AudioSource> ();
-		defaultSoundEffectVolume = 1f;
-		soundEffectVolume = defaultSoundEffectVolume;
+		defaultSoundEffectVolume = 0.5f;
+		soundEffectVolume = GetSavedSfxVolume ();;
+	}
+
+	private void SaveVolume(float volume) {
+		PlayerPrefs.SetFloat ("sfxvolume", volume);
+		PlayerPrefs.Save ();
+	}
+
+	private float GetSavedSfxVolume() {
+		float volume = PlayerPrefs.GetFloat ("sfxvolume", -1);
+		if (volume < 0) {
+			volume = defaultSoundEffectVolume;
+			SaveVolume (volume);
+		}
+		return volume;
 	}
 
 	public void PlayButtonClicked() {
 		audioSource.PlayOneShot (buttonClickClip, soundEffectVolume);
+	}
+
+	public void SetVolume(float volume) {
+		SaveVolume (volume);
+		soundEffectVolume = volume;
+	}
+
+	public float GetVolume() {
+		return soundEffectVolume;
 	}
 }
