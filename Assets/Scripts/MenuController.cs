@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour {
 
 	public Slider musicSlider;
-	private SoundController soundController;
+	private MusicController musicController;
 	// Use this for initialization
 	void Start () {
-		soundController = GameObject.Find ("MusicPlayer").GetComponent<SoundController> ();
+		musicController = GameObject.Find ("MusicPlayer").GetComponent<MusicController> ();
 		MaybeInitializeSettings ();
 	}
 
@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void SetMusicVolume() {
-		soundController.SetMusicVolume (musicSlider.value);
+		musicController.SetMusicVolume (musicSlider.value);
 	}
 
 	//TODO initialize settings menu
@@ -55,6 +55,6 @@ public class MenuController : MonoBehaviour {
 	}
 
 	private void InitializeSettings() {
-		musicSlider.value = soundController.GetMusicVolume ();
+		musicSlider.value = musicController.GetMusicVolume ();
 	}
 }
