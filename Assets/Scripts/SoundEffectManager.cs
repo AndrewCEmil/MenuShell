@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundEffectManager : MonoBehaviour {
 
 	public AudioClip buttonClickClip;
+	public AudioClip volumeClip;
 
 	private AudioSource audioSource;
 	public float soundEffectVolume;
@@ -23,7 +24,8 @@ public class SoundEffectManager : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 		audioSource = GetComponent<AudioSource> ();
 		defaultSoundEffectVolume = 0.5f;
-		soundEffectVolume = GetSavedSfxVolume ();;
+		soundEffectVolume = GetSavedSfxVolume ();
+		audioSource.volume = soundEffectVolume;
 	}
 
 	private void SaveVolume(float volume) {
@@ -44,9 +46,19 @@ public class SoundEffectManager : MonoBehaviour {
 		audioSource.PlayOneShot (buttonClickClip, soundEffectVolume);
 	}
 
+	public void StartVolumeSound() {
+		audioSource.clip = volumeClip;
+		audioSource.Play ();
+	}
+
+	public void StopVolumeSound() {
+		audioSource.Stop ();
+	}
+
 	public void SetVolume(float volume) {
 		SaveVolume (volume);
 		soundEffectVolume = volume;
+		audioSource.volume = volume;
 	}
 
 	public float GetVolume() {

@@ -54,6 +54,14 @@ public class MenuController : MonoBehaviour {
 		sfxController.SetVolume (sfxSlider.value);
 	}
 
+	public void SfxVolumeSliderClicked() {
+		sfxController.PlayVolumeSound ();
+	}
+
+	public void SfxVolumeSliderReleased() {
+		sfxController.StopVolumeSound ();
+	}
+
 	//TODO initialize settings menu
 	private void MaybeInitializeSettings() {
 		if (SceneManager.GetActiveScene ().name == "SettingsScene") {
