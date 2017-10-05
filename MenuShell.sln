@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuShell", "Assembly-CSharp.csproj", "{3AC25754-96D7-D761-7460-52B2A58B55C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuShell", "Assembly-CSharp-Editor.csproj", "{FCB2BDB7-4ACF-624C-054A-7654BFA67CD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{3AC25754-96D7-D761-7460-52B2A58B55C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC25754-96D7-D761-7460-52B2A58B55C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC25754-96D7-D761-7460-52B2A58B55C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB2BDB7-4ACF-624C-054A-7654BFA67CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB2BDB7-4ACF-624C-054A-7654BFA67CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB2BDB7-4ACF-624C-054A-7654BFA67CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB2BDB7-4ACF-624C-054A-7654BFA67CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
